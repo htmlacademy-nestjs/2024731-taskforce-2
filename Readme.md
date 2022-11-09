@@ -1,7 +1,7 @@
 # Личный проект «TaskForce»
 
-* Студент: [Сергей Долгушин](https://up.htmlacademy.ru/nodejs-2/2/user/2024731).
-* Наставник: `Неизвестно`.
+- Студент: [Сергей Долгушин](https://htmlacademy.ru/profile/id2024731).
+- Наставник: [Олег Зубов](https://htmlacademy.ru/profile/id42701).
 
 ---
 
