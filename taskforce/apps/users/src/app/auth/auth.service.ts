@@ -89,4 +89,8 @@ export class AuthService {
 
     return this.taskUserRepository.update(id, taskUserEntity);
   }
+
+  public async delete(id: string) {
+    return this.taskUserRepository.destroy(id);
+  }
 }
