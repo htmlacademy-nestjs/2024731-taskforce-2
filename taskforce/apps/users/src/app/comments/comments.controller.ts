@@ -17,7 +17,6 @@ export class CommentsController {
   })
   async create(@Body() dto: CreateCommentDto) {
     const newComment = await this.commentService.register(dto);
-    // return fillObject(CreateCommentDto, newComment);
     return newComment;
   }
 
@@ -28,7 +27,6 @@ export class CommentsController {
   })
   async show(@Param('id') id: string) {
     const existUser = await this.commentService.getCommentsForUser(id);
-    console.log(existUser);
     return existUser;
   }
 

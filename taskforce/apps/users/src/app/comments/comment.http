@@ -3,8 +3,8 @@ POST http://localhost:3333/api/comments/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "userId": "1312312345",
-  "workerId": "384834578",
+  "userId": "13123123451",
+  "workerId": "3848345781",
   "taskId": "232312",
   "content": "it's good",
   "rating": "3"
@@ -13,7 +13,7 @@ Content-Type: application/json
 ###
 
 # Get all comments for this user
-GET http://localhost:3333/api/comments/384834578 HTTP/1.1
+GET http://localhost:3333/api/comments/3848345781 HTTP/1.1
 Content-Type: application/json
 
 ###
