@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import * as dayjs from 'dayjs';
 import { TaskUserMemoryRepository } from '../task-user/task-user-memory.repository';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -6,21 +6,13 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { AUTH_USER_EXISTS, AUTH_USER_NOT_FOUND, AUTH_USER_PASSWORD_WRONG } from './auth.constant';
 import { TaskUserEntity } from '../task-user/task-user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ConfigType } from '@nestjs/config';
-import databaseConfig from '../../config/database.config';
+
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly taskUserRepository: TaskUserMemoryRepository,
-    @Inject(databaseConfig.KEY)
-    private readonly mongoConfig: ConfigType<typeof databaseConfig>,
-  ) {
-    //получение настроек с пом. точечной нотации, временый коммент - уберу в следующем коммите
-    // console.log(configService.get<string>('databaseName'));
-    //второй вариант получения настроек, коммент уберу в след. коммите
-    console.log(mongoConfig.password);
-  }
+  ) {}
 
   async register(dto: CreateUserDto) {
     const {email, firstname, lastname, password, birthday, role, city} = dto;
