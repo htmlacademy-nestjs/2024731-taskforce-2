@@ -7,6 +7,7 @@ import databaseConfig from '../config/database.config';
 import envSchema from './env.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { getMongoDbConfig } from '../config/mongodb.config';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -17,11 +18,10 @@ import { getMongoDbConfig } from '../config/mongodb.config';
       load: [databaseConfig],
       validationSchema: envSchema,
     }),
-    MongooseModule.forRootAsync(
-      getMongoDbConfig()
-    ),
+    MongooseModule.forRootAsync(getMongoDbConfig()),
     TaskUserModule,
-    AuthModule
+    AuthModule,
+    CommentsModule,
   ],
   controllers: [],
   providers: [],
