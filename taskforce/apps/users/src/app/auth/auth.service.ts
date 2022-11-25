@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import * as dayjs from 'dayjs';
-import { TaskUserMemoryRepository } from '../task-user/task-user-memory.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AUTH_USER_EXISTS, AUTH_USER_NOT_FOUND, AUTH_USER_PASSWORD_WRONG } from './auth.constant';
 import { TaskUserEntity } from '../task-user/task-user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { TaskUserRepository } from '../task-user/task-user.repository';
+
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly taskUserRepository: TaskUserMemoryRepository
+    private readonly taskUserRepository: TaskUserRepository,
   ) {}
 
   async register(dto: CreateUserDto) {
@@ -91,6 +92,11 @@ export class AuthService {
   }
 
   public async delete(id: string) {
+    const existUser = await this.taskUserRepository.findById(id);
+
+    if (!existUser) {
+      throw new Error(AUTH_USER_NOT_FOUND);
+    }
     return this.taskUserRepository.destroy(id);
   }
 }

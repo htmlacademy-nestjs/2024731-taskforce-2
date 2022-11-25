@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Patch, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Patch, HttpCode, HttpStatus, Delete } from '@nestjs/common';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { fillObject } from '@taskforce/core';
 import { UserRole } from '@taskforce/shared-types';
@@ -75,5 +75,15 @@ export class AuthController {
   async update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
     const newUser = await this.authService.updateUser(id, dto);
     return fillObject(UserRdo, newUser);
+  }
+
+  @Delete('delete/:id')
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'The user has been successfully deleted.'
+  })
+  async delete(@Param('id') id: string) {
+    const result = await this.authService.delete(id);
+    return result;
   }
 }
